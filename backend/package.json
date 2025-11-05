@@ -15,6 +15,8 @@
     "vercel-build": "echo 'Build not needed'",
     "render-build": "npm install && npm run build",
     "render-start": "node dist/main",
+    "test-mongo": "node test-mongo.js",
+    "debug-env": "node -e \"console.log('Environment Variables:'); console.log('MONGODB_URI:', process.env.MONGODB_URI ? 'Set' : 'Not Set'); console.log('NODE_ENV:', process.env.NODE_ENV); console.log('PORT:', process.env.PORT);\"",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
     "test": "jest",
     "test:watch": "jest --watch",

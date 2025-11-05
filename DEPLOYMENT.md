@@ -62,16 +62,22 @@ Start Command: npm run render-start
 ```
 
 ### Step 4: Set Environment Variables
-In Render dashboard, add these environment variables:
+⚠️ **CRITICAL**: In Render dashboard, add these environment variables EXACTLY:
 ```
 NODE_ENV=production
-MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/jwt-auth?retryWrites=true&w=majority
-JWT_SECRET=your_super_secret_jwt_key_minimum_32_characters_long
+MONGODB_URI=mongodb+srv://vinh:abcdef05@cluster0.v00nt.mongodb.net/jwt-auth?retryWrites=true&w=majority
+JWT_SECRET=kF8!rZp3^wT@7Lq9uC#2vB6$eN1xJ*DgR5yM&hS0tQz
 JWT_REFRESH_SECRET=sX9@eL2$yT5#rV8!hC1^pQ6&nB3*zG7wM0dJfK4uZtR
 JWT_EXPIRES_IN=15m
 JWT_REFRESH_EXPIRES_IN=7d
 PORT=10000
 ```
+
+🚨 **Important Notes**:
+- Copy EXACT values from your `.env` file
+- Change database name from `test` to `jwt-auth` 
+- Ensure no extra spaces or line breaks
+- Click "Save" after each variable
 
 **🔑 Generate Strong Secrets:**
 ```bash
@@ -185,6 +191,43 @@ vercel
 
 ## 🔧 Troubleshooting
 
+### Critical MongoDB Connection Issues
+**Error**: `querySrv ENOTFOUND _mongodb._tcp.cluster.mongodb.net`
+
+**Solution**:
+1. **Verify MongoDB Atlas Cluster**:
+   ```bash
+   # Check if cluster URL is correct
+   # Go to MongoDB Atlas → Clusters → Connect → Connect your application
+   # Copy EXACT connection string
+   ```
+
+2. **Correct MongoDB URI Format**:
+   ```
+   # ✅ Correct format:
+   mongodb+srv://<username>:<password>@<cluster-name>.<random-string>.mongodb.net/<database>?retryWrites=true&w=majority
+   
+   # ❌ Common mistakes:
+   - Wrong cluster name
+   - Wrong password (special characters need URL encoding)
+   - Missing database name
+   ```
+
+3. **Environment Variables on Render**:
+   ```
+   # Make sure these are set in Render dashboard:
+   MONGODB_URI=mongodb+srv://username:password@cluster0.abc123.mongodb.net/jwt-auth?retryWrites=true&w=majority
+   NODE_ENV=production
+   JWT_SECRET=your-secret
+   JWT_REFRESH_SECRET=your-refresh-secret
+   PORT=10000
+   ```
+
+4. **MongoDB Atlas Settings**:
+   - **IP Whitelist**: Add `0.0.0.0/0` (allow all)
+   - **Database User**: Ensure user has read/write permissions
+   - **Network Access**: Allow access from anywhere
+
 ### Common Backend Issues
 1. **Build Fails**:
    ```bash
@@ -193,9 +236,10 @@ vercel
    ```
 
 2. **Database Connection Error**:
-   - Verify MongoDB URI
-   - Check IP whitelist in MongoDB Atlas
+   - Verify MongoDB URI format exactly
+   - Check IP whitelist in MongoDB Atlas: 0.0.0.0/0
    - Ensure database user has correct permissions
+   - Test connection string locally first
 
 3. **CORS Issues**:
    - Update frontend URL in CORS configuration
