@@ -152,12 +152,60 @@ vercel
    ```
 
 ### Step 4: Set Environment Variables in Vercel
-1. **Go to Project Settings** → Environment Variables
-2. **Add Variable**:
+🚨 **CRITICAL**: You MUST set environment variables in Vercel Dashboard:
+
+**Method 1: Via Dashboard (Recommended)**
+1. **Go to Vercel Dashboard**: https://vercel.com/dashboard
+2. **Select Your Project**: `jwt-auth-fe` (or your project name)
+3. **Go to Settings** → **Environment Variables**
+4. **Add New Variable**:
    ```
    Name: VITE_API_BASE_URL
-   Value: https://your-backend-service.onrender.com
+   Value: https://authen-app.onrender.com
+   Environment: Production ✅, Preview ✅, Development ✅ (check all)
    ```
+5. **Click "Save"**
+6. **Go to Deployments tab** → **Click "Redeploy"**
+
+### 🚨 TROUBLESHOOTING: Environment Variable Issues
+
+Nếu bạn gặp lỗi với VITE_API_BASE_URL, thử các cách sau:
+
+**Solution 1: Deploy từ GitHub (Recommended)**
+1. Push code lên GitHub trước:
+   ```bash
+   git add .
+   git commit -m "Add production env vars"
+   git push origin main
+   ```
+
+2. **Tạo project mới trên Vercel**:
+   - Go to https://vercel.com/dashboard
+   - Click "New Project"
+   - Import từ GitHub repository
+   - **BEFORE deploy**: Click "Environment Variables"
+   - Add: `VITE_API_BASE_URL` = `https://authen-app.onrender.com`
+   - Select ALL environments (Production, Preview, Development)
+   - Click "Deploy"
+
+**Solution 2: Xóa và tạo lại project**
+1. **Delete current project**: Settings → General → Delete Project
+2. **Import lại từ GitHub** với env vars set từ đầu
+
+**Solution 3: Manual redeploy**
+1. Đảm bảo env vars đã được add trong Settings
+2. Go to Deployments tab
+3. Click "..." → "Redeploy" trên deployment mới nhất
+
+⚠️ **Alternative Method - CLI** (có thể skip nếu dashboard work):
+```bash
+# Set environment variable via CLI
+vercel env add VITE_API_BASE_URL
+
+# When prompted, enter:
+# Value: https://authen-app.onrender.com
+# Environment: Production
+```
 
 ### Step 5: Redeploy
 - If using CLI: `vercel --prod`
