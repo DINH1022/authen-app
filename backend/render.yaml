@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: jwt-auth-backend
+    env: node
+    region: singapore
+    plan: free
+    buildCommand: npm run render-build
+    startCommand: npm run render-start
+    healthCheckPath: /
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: JWT_SECRET
+        generateValue: true
+      - key: JWT_REFRESH_SECRET
+        generateValue: true
+      - key: JWT_EXPIRES_IN
+        value: 15m
+      - key: JWT_REFRESH_EXPIRES_IN
+        value: 7d
+      - key: MONGODB_URI
+        sync: false  # Will be set manually in dashboard

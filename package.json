@@ -1,0 +1,33 @@
+{
+  "name": "jwt-auth-fullstack",
+  "version": "1.0.0",
+  "description": "JWT Authentication with React & NestJS - Full Stack Application",
+  "scripts": {
+    "install:backend": "cd backend && npm install",
+    "install:frontend": "cd frontend && npm install",
+    "install:all": "npm run install:backend && npm run install:frontend",
+    "build:backend": "cd backend && npm run build",
+    "build:frontend": "cd frontend && npm run build",
+    "build:all": "npm run build:backend && npm run build:frontend",
+    "start:backend": "cd backend && npm run start:dev",
+    "start:frontend": "cd frontend && npm run dev",
+    "start:prod:backend": "cd backend && npm run start:prod",
+    "start:prod:frontend": "cd frontend && npm run preview"
+  },
+  "keywords": [
+    "jwt",
+    "authentication",
+    "react",
+    "nestjs",
+    "typescript",
+    "mongodb",
+    "refresh-token",
+    "access-token"
+  ],
+  "author": "Student",
+  "license": "MIT",
+  "workspaces": [
+    "backend",
+    "frontend"
+  ]
+}
