@@ -67,7 +67,7 @@ In Render dashboard, add these environment variables:
 NODE_ENV=production
 MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/jwt-auth?retryWrites=true&w=majority
 JWT_SECRET=your_super_secret_jwt_key_minimum_32_characters_long
-JWT_REFRESH_SECRET=your_different_super_secret_refresh_key_minimum_32_characters
+JWT_REFRESH_SECRET=sX9@eL2$yT5#rV8!hC1^pQ6&nB3*zG7wM0dJfK4uZtR
 JWT_EXPIRES_IN=15m
 JWT_REFRESH_EXPIRES_IN=7d
 PORT=10000
